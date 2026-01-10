@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gemini Premium</title>
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --success: #2e7d32;
+            --bg: #f4f4f9;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; text-align: center; margin: 0; background-color: var(--bg); transition: 0.5s; }
+        .container { display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 350px; }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        button { background-color: var(--primary); color: white; border: none; padding: 12px 28px; border-radius: 50px; cursor: pointer; font-size: 16px; font-weight: 600; transition: 0.3s; margin-top: 10px; }
+        button:hover { transform: scale(1.05); box-shadow: 0 5px 15px rgba(26, 115, 232, 0.4); }
+        
+        .hidden { display: none; }
+        input { padding: 8px; border-radius: 5px; border: 1px solid #ddd; width: 60px; text-align: center; margin: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card" id="appCard">
+        
+        <div id="homeView" class="fade-in">
+            <h1 style="color: var(--primary);">Welcome to Gemini</h1>
+            <p>Experience the next generation of AI with our Premium Credits.</p>
+            <button onclick="showView('orderView')">Get Started</button>
+        </div>
+
+        <div id="orderView" class="hidden">
+            <h2>Select Amount</h2>
+            <p>How many credits would you like?</p>
+            <input type="number" id="quantity" value="10" min="1">
+            <br>
+            <button onclick="completeOrder()">Purchase Now</button>
+        </div>
+
+        <div id="celebrateView" class="hidden">
+            <h1 style="font-size: 50px;">🎉</h1>
+            <h2 style="color: var(--success);">You're All Set!</h2>
+            <p id="statusMsg"></p>
+            <button onclick="showView('homeView')" style="background-color: #555;">Back Home</button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function showView(viewId) {
+        // Hide all views
+        document.getElementById('homeView').classList.add('hidden');
+        document.getElementById('orderView').classList.add('hidden');
+        document.getElementById('celebrateView').classList.add('hidden');
+        
+        // Reset background
+        document.body.style.backgroundColor = "#f4f4f9";
+
+        // Show requested view
+        const target = document.getElementById(viewId);
+        target.classList.remove('hidden');
+        target.classList.add('fade-in');
+    }
+
+    function completeOrder() {
+        const qty = document.getElementById('quantity').value;
+        document.getElementById('statusMsg').innerText = `Your ${qty} Premium Credits have been added to your account.`;
+        
+        showView('celebrateView');
+        document.body.style.backgroundColor = "#e8f5e9"; // Light green celebration
+    }
+</script>
+
+</body>
+</html>
