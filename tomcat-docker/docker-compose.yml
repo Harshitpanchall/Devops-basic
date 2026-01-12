@@ -6,4 +6,8 @@ services:
     build: .              # Build the image from the Dockerfile in the current directory
     container_name: tomcat-container  # Custom container name
     ports:
+<<<<<<< HEAD:tomcat-docker/docker-compose.yml
       - "8080:8080"  # Maps port 8080 on host to port 8080 in the container
+=======
+      - "8080:8080"  # Maps port 8080 on host to port 8080 in the container
+>>>>>>> 970a46f88f331fec1d45acf847cb86f5c711687e:tomcat-docker/docker.compose.yml
